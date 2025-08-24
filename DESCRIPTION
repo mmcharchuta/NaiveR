@@ -1,0 +1,31 @@
+Package: NaiveR
+Type: Package
+Title: Classifying DNA Sequences to Taxonomic Groupings
+Version: 0.1.1
+Authors@R: 
+    person("Mikołaj Mieszko", "Charchuta", email = "mmcharchuta@gmail.com", role = c("aut", "cre"))
+Description: Classification based analysis of DNA sequences to taxonomic groupings. This package primarily implements Naive Bayesian Classifier from the Ribosomal Database Project. This approach has traditionally been used to classify 16S rRNA gene sequences to bacterial taxonomic outlines; however, it can be used for any type of gene sequence.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+LazyDataCompression: xz
+RoxygenNote: 7.3.2
+Roxygen: list(markdown = TRUE)
+Suggests: 
+    knitr,
+    rmarkdown,
+    purrr,
+    dplyr,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Imports: 
+    Rcpp,
+    readr (>= 2.1.0),
+    Rfast (>= 2.1.0),
+    stats (>= 4.0.0),
+    stringi (>= 1.8.0)
+LinkingTo: 
+    Rcpp
+Depends: 
+    R (>= 4.2)
+VignetteBuilder: knitr

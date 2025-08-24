@@ -1,0 +1,35 @@
+# Ignore compiled objects and shared libraries
+src/*.o
+src/*.dll
+src/*.so
+src/*.a
+src/*.obj
+src/*.lib
+src/*.exp
+src/*.pdb
+src/*.def
+src/*.rds
+src/*.dSYM/
+
+# Ignore RcppExports.o
+src/RcppExports.o
+
+# R build and devtools output
+.Rhistory
+.RData
+.Rproj.user/
+.Ruserdata
+.Rbuildignore
+.Rcheck/
+.Rproj.user/
+.Rhistory
+.Rapp.history
+
+# VSCode
+.vscode/
+
+# MacOS
+.DS_Store
+
+# Windows
+Thumbs.db
