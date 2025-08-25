@@ -1,9 +1,10 @@
-#' Import taxonomy data from file
+#' Load taxonomic classification data from external file
 #'
-#' Reads a taxonomy file (mothur-style) into a data frame with id and taxonomy columns.
+#' Processes a tab-separated taxonomy file (following mothur format conventions) and 
+#' converts it into a structured data frame with standardized taxonomy formatting.
 #'
-#' @param file_path Path or connection to the taxonomy file.
-#' @return Data frame with columns: id and taxonomy (semicolon-separated, no trailing semicolon).
+#' @param file_path File path or connection object pointing to taxonomy data file
+#' @return Data frame with id and taxonomy columns (semicolon-delimited, trailing semicolons removed)
 #' @importFrom stringi stri_replace_last_regex stri_replace_all_regex
 #' @importFrom readr read_tsv cols col_character
 #' @export

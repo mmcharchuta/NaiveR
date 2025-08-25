@@ -1,10 +1,11 @@
-#' Filter taxonomy by confidence threshold
+#' Apply confidence-based filtering to taxonomic assignments
 #'
-#' Removes taxonomic levels with confidence below a minimum threshold.
+#' Eliminates taxonomic classifications that fall below a specified confidence threshold,
+#' retaining only high-confidence assignments for downstream analysis.
 #'
-#' @param consensus_tax List with 'taxonomy' and 'confidence' vectors.
-#' @param min_conf Numeric, minimum confidence (default 80).
-#' @return Filtered list with taxonomy and confidence above threshold.
+#' @param consensus_tax Named list containing 'taxonomy' and 'confidence' vectors from classification
+#' @param min_conf Numeric threshold value for minimum acceptable confidence (default: 80)
+#' @return Filtered list structure containing only taxonomy and confidence values above threshold
 #' @export
 filter_taxonomy <- function(consensus_tax, min_conf = 80) {
   keep <- which(consensus_tax$confidence >= min_conf)

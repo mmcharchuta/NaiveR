@@ -1,23 +1,24 @@
-#' Export a data frame to FASTA format
+#' Generate FASTA format output from sequence data frame
 #'
-#' Converts a data frame with columns for id, sequence, and comment into a string or file in FASTA format.
-#' The header will use a tab to separate id and comment, but omits the tab if comment is empty. Sequences are single-line.
+#' Transforms structured sequence data into standard FASTA format, either as a string
+#' or written directly to file. Headers combine identifier and metadata with tab separation,
+#' omitting tabs when metadata is absent. Sequences appear as single lines.
 #'
 #' @param df_sequences
-#'   Data frame with columns: id, sequence, and (optionally) comment.
+#'   Data frame containing sequence information with id, sequence, and optional comment columns
 #' @param output_file
-#'   File path or connection to write the FASTA output, or NULL to return as string.
+#'   Target file path for writing FASTA content, or NULL to return formatted string
 #'
 #' @return
-#'   FASTA-formatted string (if output_file is NULL) or writes to file.
+#'   FASTA-formatted character string when output_file is NULL, otherwise writes to specified file
 #'
 #' @examples
-#' example_df <- data.frame(
+#' sequence_data <- data.frame(
 #'   id = c("seq1", "seq2"),
 #'   sequence = c("ATGC", "TACG"),
-#'   comment = c("foo", "bar")
+#'   comment = c("description1", "description2")
 #' )
-#' write_fasta(example_df)
+#' write_fasta(sequence_data)
 #' @export
 write_fasta <- function(df_sequences, output_file = NULL) {
   fasta_lines <- paste0(">", df_sequences$id, "\t", df_sequences$comment, "\n", df_sequences$sequence, collapse = "\n")

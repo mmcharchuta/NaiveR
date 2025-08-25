@@ -1,10 +1,11 @@
-#' Read a FASTA file into a data frame
+#' Parse FASTA format file into structured data frame
 #'
-#' Reads a standard FASTA file and returns a data frame with id, sequence, and comment columns.
+#' Processes a FASTA-formatted file containing DNA/protein sequences and converts
+#' it into a tabular format with separate columns for identifiers, sequences, and metadata.
 #'
-#' @param fasta_file Path or connection to the FASTA file.
-#' @param remove_gaps Logical, default TRUE. If TRUE, removes gap characters ('.' or '-') from sequences.
-#' @return Data frame with columns: id, sequence, comment.
+#' @param fasta_file File path or connection object pointing to FASTA format file
+#' @param remove_gaps Boolean flag controlling removal of gap characters ('.', '-') from sequences
+#' @return Data frame containing parsed sequence data with id, sequence, and comment fields
 #' @importFrom readr read_lines
 #' @importFrom stringi stri_startswith_fixed stri_replace_first_regex stri_c stri_replace_all_regex
 #' @export

@@ -1,10 +1,11 @@
-#' Display taxonomy with confidence values
+#' Format taxonomic results with associated confidence scores
 #'
-#' Prints consensus taxonomy for a sequence, appending confidence for each level.
+#' Creates a formatted string representation of taxonomic classification results,
+#' appending confidence scores to each taxonomic level for easy interpretation.
 #'
-#' @param consensus_tax List with 'taxonomy' and 'confidence' vectors.
-#' @param total_levels Integer, number of taxonomic levels to display (default 6).
-#' @return Character string of taxonomy with confidence values.
+#' @param consensus_tax Named list containing 'taxonomy' and 'confidence' vectors from classification
+#' @param total_levels Integer specifying desired number of taxonomic levels for display (default: 6)
+#' @return Character string showing taxonomy hierarchy with confidence scores in parentheses
 #' @export
 print_taxonomy <- function(consensus_tax, total_levels = 6) {
   orig_levels <- length(consensus_tax$taxonomy)

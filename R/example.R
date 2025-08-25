@@ -1,9 +1,10 @@
-#' Access example files for NaiveR
+#' Retrieve paths to bundled example files
 #'
-#' Returns the path to example files bundled with NaiveR, or lists available files if no path is given.
+#' Provides access to demonstration files included with the NaiveR package installation,
+#' either returning specific file paths or listing all available example files.
 #'
-#' @param file_name Name of the example file, or NULL to list all.
-#' @return Path to the file, or vector of file names if NULL.
+#' @param file_name Character string specifying target example file, or NULL to enumerate all files
+#' @return File system path to requested file, or character vector listing all available examples
 #' @export
 naiver_example <- function(file_name = NULL) {
   if (is.null(file_name)) {

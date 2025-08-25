@@ -1,9 +1,10 @@
-#' Example training sets for NaiveR
+#' Reference training datasets for taxonomic classification
 #'
-#' These data sets contain sequence and taxonomy data for use with the NaiveR classifier.
+#' These datasets provide curated sequence and taxonomic information specifically 
+#' designed for training and validating the NaiveR classification system.
 #'
-#' @format Data frame with columns: id, sequence, taxonomy.
-#' @source See the NaiveR reference data documentation for details.
+#' @format Data frame structure with id, sequence, and taxonomy columns
+#' @source Refer to NaiveR documentation for detailed dataset provenance information
 "trainset9_rdp"
 #' @rdname trainset9_rdp
 "trainset9_pds"

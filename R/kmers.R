@@ -1,9 +1,12 @@
-#' Build k-mer database for NaiveR
+#' Construct k-mer frequency database from training sequences
 #'
-#' @param seqs Vector of reference sequences.
-#' @param genus_labels Vector of genus-level taxonomy for each sequence.
-#' @param klen Integer, k-mer size (default 8).
-#' @return List with conditional probabilities and genus names.
+#' This function constructs a database containing k-mer frequency information 
+#' from a collection of reference DNA sequences and their associated genus classifications.
+#'
+#' @param seqs Character vector containing reference DNA sequences
+#' @param genus_labels Character vector of genus-level taxonomic assignments for sequences
+#' @param klen Numeric value specifying k-mer length (defaults to 8)
+#' @return Named list containing conditional probability matrix and genus identifiers
 #' @export
 build_kmer_database <- function(seqs, genus_labels, klen = 8) {
   genus_idx <- genus_to_index(genus_labels)
@@ -14,13 +17,16 @@ build_kmer_database <- function(seqs, genus_labels, klen = 8) {
   list(conditional_prob = cond_probs, genera = genus_names)
 }
 
-#' Classify a sequence using NaiveR
+#' Perform taxonomic assignment using Naive Bayes classification
 #'
-#' @param unknown_seq DNA sequence to classify.
-#' @param db K-mer database from build_kmer_database.
-#' @param klen Integer, k-mer size (default 8).
-#' @param n_boot Integer, number of bootstraps (default 100).
-#' @return List with taxonomy and confidence.
+#' Applies Naive Bayes methodology with bootstrap sampling to assign taxonomic 
+#' identity to an unknown DNA sequence based on k-mer composition patterns.
+#'
+#' @param unknown_seq Character string containing the query DNA sequence
+#' @param db Database object created by build_kmer_database function
+#' @param klen Numeric value for k-mer length (defaults to 8)
+#' @param n_boot Numeric value for bootstrap iterations (defaults to 100)
+#' @return Named list containing taxonomic assignment and confidence metrics
 #' @export
 classify_sequence <- function(unknown_seq, db, klen = 8, n_boot = 100) {
   kmers <- find_kmers(unknown_seq, klen)
@@ -32,7 +38,7 @@ classify_sequence <- function(unknown_seq, db, klen = 8, n_boot = 100) {
   consensus_bs_class(bs_class, db$genera)
 }
 
-#' @noRd
+# Internal function - extract k-mer patterns from single sequence
 find_kmers <- function(seq, klen = 8) {
   seq_to_base4(seq) |>
     get_kmers(klen) |>
@@ -40,60 +46,60 @@ find_kmers <- function(seq, klen = 8) {
     unique()
 }
 
-#' @noRd
+# Internal function - process multiple sequences for k-mer extraction
 find_kmers_across_seqs <- function(seqs, klen = 8) {
   lapply(seqs, find_kmers, klen = klen)
 }
 
-#' @noRd
+# Internal function - sliding window k-mer generation
 get_kmers <- function(x, klen = 8) {
   n <- stringi::stri_length(x)
   n_kmers <- n - klen + 1
   stringi::stri_sub(x, 1:n_kmers, klen:n)
 }
 
-#' @noRd
+# Internal function - convert DNA sequence to base-4 representation
 seq_to_base4 <- function(seq) {
   stringi::stri_trans_toupper(seq) |>
     stringi::stri_replace_all_charclass(str = _, pattern = "[^ACGT]", replacement = "N") |>
     stringi::stri_trans_char(str = _, pattern = "ACGT", replacement = "0123")
 }
 
-#' @noRd
+# Internal function - convert base-4 strings to numeric indices
 base4_to_idx <- function(base4_str) {
   stats::na.omit(strtoi(base4_str, base = 4) + 1) |> as.numeric()
 }
 
-#' @noRd
+# Internal function - calculate prior probabilities for k-mer words
 calc_word_priors <- function(kmer_list, klen) {
   priors <- unlist(kmer_list) |> tabulate(bin = _, nbins = 4^klen)
   (priors + 0.5) / (length(kmer_list) + 1)
 }
 
-#' @noRd
+# Internal function - map genus labels to numeric indices
 genus_to_index <- function(genus) {
   factor(genus) |> as.numeric()
 }
 
-#' @noRd
+# Internal function - extract unique genus names from labels
 unique_genera <- function(genus) {
   factor(genus) |> levels()
 }
 
-#' @noRd
+# Internal function - bootstrap sampling of k-mers
 bootstrap_kmers <- function(kmers, klen = 8) {
   n <- as.integer(length(kmers) / klen)
   sample(kmers, n, replace = TRUE)
 }
 
-#' @noRd
-#' @importFrom Rfast rowsums
+# Internal function - classify bootstrap sample using conditional probabilities
+# @importFrom Rfast rowsums
 classify_bs <- function(unknown_kmers, cond_probs) {
   probs <- Rfast::rowsums(cond_probs[, unknown_kmers])
   which.max(probs)
 }
 
-#' @noRd
+# Internal function - generate consensus classification from bootstrap results
 consensus_bs_class <- function(bs_class, genera) {
   taxonomy <- genera[bs_class]
   taxonomy_split <- stringi::stri_split_fixed(taxonomy, pattern = ";")
@@ -107,7 +113,7 @@ consensus_bs_class <- function(bs_class, genera) {
   )
 }
 
-#' @noRd
+# Internal function - determine consensus taxonomy from classification results
 get_consensus <- function(taxonomy) {
   n_bs <- length(taxonomy)
   taxonomy_table <- table(taxonomy)
@@ -118,7 +124,7 @@ get_consensus <- function(taxonomy) {
   )
 }
 
-#' @noRd
+# Internal function - compute conditional probability matrix for k-mers and genera
 calc_conditional_probs <- function(kmer_list, genus_idx, word_priors) {
   genus_counts <- tabulate(genus_idx)
   n_genera <- length(genus_counts)
