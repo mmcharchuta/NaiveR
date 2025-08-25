@@ -29,10 +29,23 @@ library(NaiveR)
 # Read a FASTA file
 fasta <- read_fasta("path/to/your.fasta")
 # Build a k-mer database
-kdb <- build_kmer_database(fasta)
+db <- build_kmer_database(
+  trainset9_pds$sequence,
+  trainset9_pds$taxonomy
+)
 # Classify a new sequence
-result <- classify_sequence(unknown_seq = "ACGTACGT...", db = kdb)
+result <- classify_sequence(unknown_seq = "ACGTACGT...", db = db)
 print(result)
+```
+
+## Example of Database Structure
+
+A typical input data frame for building a k-mer database should have the following columns (example from files in /data):
+
+| id    | sequence                                                                                                                        | taxonomy                                                        |
+|-------|----------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|
+| 6564  | Z97069_S000001309                                                                                                               | Bacteria;Actinobacteria;Actinobacteria;Actinomycetales;Corynebacteriaceae |
+|       | ctcaggacg...1410 more bp...acca |
 ```
 
 ## Development
