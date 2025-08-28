@@ -34,7 +34,35 @@ train_naiver_classifier <- function(sequences_file = "silva_sequences.fasta",
   
   # Read Silva sequences
   cat("Reading Silva reference sequences...\n")
-  silva_sequences <- read_fasta(sequences_file)
+  
+  # Use a more robust FASTA reader
+  read_fasta_robust <- function(file) {
+    lines <- readLines(file)
+    headers <- grep("^>", lines)
+    sequences <- list()
+    
+    for (i in seq_along(headers)) {
+      header_line <- headers[i]
+      # Extract ID (everything before first space)
+      header <- lines[header_line]
+      seq_id <- sub("^>([^ ]+).*", "\\1", header)
+      
+      # Get sequence (next line)
+      if (i < length(headers)) {
+        seq_lines <- (header_line + 1):(headers[i + 1] - 1)
+      } else {
+        seq_lines <- (header_line + 1):length(lines)
+      }
+      
+      # Concatenate sequence lines
+      sequence <- paste(lines[seq_lines], collapse = "")
+      sequences[[seq_id]] <- sequence
+    }
+    
+    return(sequences)
+  }
+  
+  silva_sequences <- read_fasta_robust(sequences_file)
   cat("Loaded", length(silva_sequences), "reference sequences\n")
   
   # Read Silva taxonomy
