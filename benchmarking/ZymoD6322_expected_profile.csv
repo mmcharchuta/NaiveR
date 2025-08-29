@@ -1,0 +1,9 @@
+species,interpretable name,genomic abundance expected,GCA-ID,genus,assembly_length,GC_content,TCGA/kbps,GTAC/kbps,all/kbps
+Bacillus_subtilis_complete_genome,Bacillus_subtilis_complete_genome,14,GCA_028743795.1,Bacillus,4215688,43.92,2.71,1.88,4.59
+Enterococcus_faecalis_complete_genome,Enterococcus_faecalis_complete_genome,14,GCA_028743535.1,Enterococcus,2895646,37.47,2.31,1.83,4.14
+Escherichia_coli_complete_genome,Escherichia_coli_complete_genome,14,GCA_028743555.1,Escherichia,4804267,50.54,3.28,2.59,5.86
+Listeria_monocytogenes_complete_genome,Listeria_monocytogenes_complete_genome,14,GCA_028743575.1,Listeria,3032011,37.94,2.9,2.16,5.06
+Pseudomonas_aeruginosa_complete_genome,Pseudomonas_aeruginosa_complete_genome,14,GCA_028743595.1,Pseudomonas,6832199,66.14,7.49,2.22,9.72
+Salmonella_enterica_complete_genome,Salmonella_enterica_complete_genome,14,GCA_028743635.1,Salmonella,4758000,52.18,2.96,2.7,5.66
+Staphylococcus_aureus_complete_genome,Staphylococcus_aureus_complete_genome,14,GCA_028743615.1,Staphylococcus,2718711,32.86,2.39,2.62,5.01
+Saccharomyces_cerevisiae_complete_genome,Saccharomyces_cerevisiae_complete_genome,2,GCA_028975445.1,Saccharomyces,18769914,38.42,2.92,2.65,5.39

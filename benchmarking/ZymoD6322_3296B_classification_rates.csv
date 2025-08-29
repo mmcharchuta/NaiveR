@@ -1,0 +1,10 @@
+max. rel. abundance [%],custom,actual rel. abundance [%],0.0,threshold,0.64,mode,significant
+species,interpretable name,sensitivity [%],match count,abundance [%],trace lengths sum [kbp],genome copy number
+Saccharomyces_cerevisiae_complete_genome,Saccharomyces_cerevisiae_complete_genome,0.02560819462227913,9,1.6953732000749515,435.4938244014089,0.024463046
+Salmonella_enterica_complete_genome,Salmonella_enterica_complete_genome,0.10527813344714752,37,6.7212044914420215,1726.488921986386,0.36286023
+Pseudomonas_aeruginosa_complete_genome,Pseudomonas_aeruginosa_complete_genome,0.10527813344714752,37,7.755210876958177,1992.0961613033696,0.29157466
+Enterococcus_faecalis_complete_genome,Enterococcus_faecalis_complete_genome,0.14511310285958173,51,9.796227127481739,2516.3759909990586,0.8690206
+Staphylococcus_aureus_complete_genome,Staphylococcus_aureus_complete_genome,0.2418551714326362,85,16.668425741400156,4281.6510680670945,1.5748827
+Listeria_monocytogenes_complete_genome,Listeria_monocytogenes_complete_genome,0.24470052639066725,86,17.316325494981538,4448.078342901575,1.467039
+Escherichia_coli_complete_genome,Escherichia_coli_complete_genome,0.2617726561388533,92,18.764807967761218,4820.1528640874385,1.0033066
+Bacillus_subtilis_complete_genome,Bacillus_subtilis_complete_genome,0.29022620571916347,102,21.282425099900188,5466.858092886168,1.296789
